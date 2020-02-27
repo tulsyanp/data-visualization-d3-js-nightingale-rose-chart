@@ -15,4 +15,4 @@ MacOS: python -m SimpleHTTPServer 8000
 Windows: Install WAMP or Xampp
 ```
 
-#### [DEMO](https://tulsyanp.github.io/data-visualization-d3js-nightingale-rose-chart/)
+#### [DEMO](https://tulsyanp.github.io/data-visualization-d3-js-nightingale-rose-chart/)
