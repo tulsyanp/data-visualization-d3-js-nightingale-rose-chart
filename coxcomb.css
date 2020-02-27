@@ -1,0 +1,281 @@
+#diagramContainer {
+    padding-top: 30px;
+}
+
+#imageContainer {
+    background-color: #FFECB3;
+    background-image: url("textured-paper.png");
+}
+
+#diagramContainer h2 hr {
+    text-align: center;
+    width: 250px;
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+
+#diagramContainer h4 hr {
+    text-align: center;
+    width: 150px;
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+
+#heading {
+    text-align: center;
+    padding-top: 20px;
+}
+
+#heading h2 {
+    font-family: cursive;
+}
+
+#heading .lower {
+    text-transform: uppercase;
+    font-size: 20px;
+}
+
+#subHeading1 {
+    padding-right: 10%;
+}
+
+#subHeading2 {
+    padding-left: 10%;
+}
+
+#subHeading1, #subHeading2 {
+    text-align: center;
+}
+
+#subHeading1 h4, #subHeading2 h4 {
+    font-family: cursive;
+}
+
+#aprilToMarch1856 figure {
+    /* float: right; */
+    height: 450px;
+}
+
+figure {
+    position: relative;
+    min-width: 600px;
+    margin-top: -120px;
+    font-family: baskerville, serif;
+}
+
+figure .label {
+    text-transform: uppercase;
+    font-size: 8px;
+    font-weight: 600;
+}
+
+/* figure .disease {
+    fill:#64B5F6;
+} */
+
+/* figure .other {
+    fill:#212121;
+} */
+
+/* figure .wounds {
+    fill: #F48FB1;
+} */
+
+.wedge {
+    stroke: #EEEEEE;
+    stroke-width: 1px;
+}
+
+.caption {
+    position: relative;
+    width: 450px;
+    display: block;
+    margin: 0 auto;
+    font-style: oblique;
+    font-size: 14.5px;
+    font-family: cursive;
+    font-weight: 700;
+    padding-bottom: 5%;
+}
+
+.caption p {
+    margin: 0;
+}
+
+.caption .shiftLittle {
+    text-indent: 20px;
+}
+
+figure .disease {
+	animation-name: color_change_disease;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+@-webkit-keyframes color_change_disease {
+	0% { fill: #64B5F6; }
+    25% { fill: #42A5F5; }
+    50% { fill: #2196F3; }
+    75% { fill: #1E88E5; }
+    100% { fill: #1976D2; }
+}
+
+@-moz-keyframes color_change_disease {
+	0% { fill: #64B5F6; }
+    25% { fill: #42A5F5; }
+    50% { fill: #2196F3; }
+    75% { fill: #1E88E5; }
+    100% { fill: #1976D2; }
+}
+@-ms-keyframes color_change_disease {
+	0% { fill: #64B5F6; }
+    25% { fill: #42A5F5; }
+    50% { fill: #2196F3; }
+    75% { fill: #1E88E5; }
+    100% { fill: #1976D2; }
+}
+@-o-keyframes color_change_disease {
+	0% { fill: #64B5F6; }
+    25% { fill: #42A5F5; }
+    50% { fill: #2196F3; }
+    75% { fill: #1E88E5; }
+    100% { fill: #1976D2; }
+}
+@keyframes color_change_disease {
+	0% { fill: #64B5F6; }
+    25% { fill: #42A5F5; }
+    50% { fill: #2196F3; }
+    75% { fill: #1E88E5; }
+    100% { fill: #1976D2; }
+}
+
+figure .wounds {
+	animation-name: color_change_wounds;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+@-webkit-keyframes color_change_wounds {
+	0% { fill: #F48FB1; }
+    25% { fill: #F06292; }
+    50% { fill: #EC407A; }
+    75% { fill: #E91E63; }
+    100% { fill: #D81B60; }
+}
+
+@-moz-keyframes color_change_wounds {
+	0% { fill: #F48FB1; }
+    25% { fill: #F06292; }
+    50% { fill: #EC407A; }
+    75% { fill: #E91E63; }
+    100% { fill: #D81B60; }
+}
+@-ms-keyframes color_change_wounds {
+	0% { fill: #F48FB1; }
+    25% { fill: #F06292; }
+    50% { fill: #EC407A; }
+    75% { fill: #E91E63; }
+    100% { fill: #D81B60; }
+}
+@-o-keyframes color_change_wounds {
+	0% { fill: #F48FB1; }
+    25% { fill: #F06292; }
+    50% { fill: #EC407A; }
+    75% { fill: #E91E63; }
+    100% { fill: #D81B60; }
+}
+@keyframes color_change_wounds {
+	0% { fill: #F48FB1; }
+    25% { fill: #F06292; }
+    50% { fill: #EC407A; }
+    75% { fill: #E91E63; }
+    100% { fill: #D81B60; }
+}
+
+figure .other {
+	animation-name: color_change_other;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+@-webkit-keyframes color_change_other {
+	0% { fill: #757575; }
+    25% { fill: #616161; }
+    50% { fill: #424242; }
+    75% { fill: #212121; }
+    100% { fill: #000000; }
+}
+
+@-moz-keyframes color_change_other {
+	0% { fill: #757575; }
+    25% { fill: #616161; }
+    50% { fill: #424242; }
+    75% { fill: #212121; }
+    100% { fill: #000000; }
+}
+@-ms-keyframes color_change_other {
+	0% { fill: #757575; }
+    25% { fill: #616161; }
+    50% { fill: #424242; }
+    75% { fill: #212121; }
+    100% { fill: #000000; }
+}
+@-o-keyframes color_change_other {
+	0% { fill: #757575; }
+    25% { fill: #616161; }
+    50% { fill: #424242; }
+    75% { fill: #212121; }
+    100% { fill: #000000; }
+}
+@keyframes color_change_other {
+	0% { fill: #757575; }
+    25% { fill: #616161; }
+    50% { fill: #424242; }
+    75% { fill: #212121; }
+    100% { fill: #000000; }
+}
+
+div.tooltip {
+    position: absolute;
+    text-align: center;
+    width: 200px;
+    height: 25px;
+    padding: 2px;
+    font: 18px baskerville, serif;
+    color: white;
+    background: black;
+    border: 1px;
+    border-radius: 8px;
+    pointer-events: none;
+    text-transform: capitalize;
+}
+
+#imageDescription {
+    text-align: center;
+    margin-top: 5px;
+}
+
+#imageDescriptionLast {
+    text-align: center;
+    margin-top: 40px;
+    color: red;
+}
+
+.caption p {
+    overflow: hidden;
+    white-space: nowrap;
+    animation: 
+        typing 2.5s steps(20, end)
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}

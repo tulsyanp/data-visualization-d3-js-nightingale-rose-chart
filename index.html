@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <title>Data Visulization | Nightingale Rose Chart</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css" />
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+
+  <!--Custom CSS-->
+  <link rel="stylesheet" type="text/css" href="coxcomb.css" />
+
+  <!--D3.js Library-->
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+
+  <!-- Lodash-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
+  <!--Custom JS-->
+  <script src="coxcomb.js"></script>
+
+</head>
+
+<body>
+  <div class="container" style="margin-top: 30px;">
+    <div class="container" id="diagramContainer">
+      <div class="row" id="imageContainer">
+        <div class="col-12" id="heading"></div>
+        <div class="col-6" id="subHeading1"></div>
+        <div class="col-6" id="subHeading2"></div>
+        <div class="col-6" id="aprilToMarch1856"></div>
+        <div class="col-6" id="aprilToMarch1855"></div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h4 id="imageDescription">Nightingale's Rose Chart</h4>
+        </div>
+        <div class="col-12">
+          <h5 id="imageDescriptionLast">Hover over the chart to see specific data!</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+
+    // define tooltip
+    var div = d3.select("body").append("div")
+      .attr("class", "tooltip")
+      .style("opacity", 0);
+
+    // Heading
+    d3.select("#heading")
+      .append("h2")
+      .html(
+        'Diagram <span class="lower">of the</span> Causes <span class="lower">of</span> Mortality <span class="lower"></br>in the</span> Army <span class="lower">of the</span> East<hr>'
+      );
+
+    // Sub-Heading 1:
+    d3.select("#subHeading1")
+      .append("h4")
+      .html("April 1855 - March 1856<hr>");
+
+    // Sub-Heading 2:
+    d3.select("#subHeading2")
+      .append("h4")
+      .html("April 1854 - March 1855<hr>");
+
+    // Using csv as there is no support for xlsx in D3.js
+    d3.csv("nightingale-data.csv").then(function (data) {
+
+      data = formatDate(data);
+
+      data = sortDataASC(data);
+
+      var maximumValue = getMaximumValue(data);
+
+      var maximumRadius = getMaximumRadius(maximumValue);
+
+      // divide the dataset into two parts April 1854 - March 1855 & April 1855 - March 1856
+      var dataAprilToMarch1855 = data.slice(0, 12);
+      var dataAprilToMarch1856 = data.slice(12, 24);
+
+      // Create chart for dataset 'aprilToMarch1855'
+      createChart(maximumRadius, dataAprilToMarch1855, '#aprilToMarch1855', 'chart1855');
+
+      // Create chart for dataset 'aprilToMarch1856'
+      createChart(maximumRadius, dataAprilToMarch1856, '#aprilToMarch1856', 'chart1856');
+
+      // Add description
+      d3.select("#aprilToMarch1856")
+        .append("figcaption")
+        .attr("class", "caption")
+        .html(
+          "<p>The Areas of the blue, red, &amp; black wedges are each measured from the</p><p class='shiftLittle'>centre as the common vertex.</p><p>The blue wedges measured from the centre of the circle represent area for</p><p class='shiftLittle'>area the deaths from Preventible or Mitigable Zymotic Diseases, the red</p><p class='shiftLittle'>wedges measured from the center the deaths from wounds, &amp; the black</p><p class='shiftLittle'>wedges measured from the center the deaths from all other causes.</p><p>In October 1854, &amp; April 1855, the black area coincides with the red, in</p><p class='shiftLittle'>January &amp; February 1856, the blue coincides with the black.</p><p> The entire areas may be compared by following the blue, the red &amp; the</p><p class='shiftLittle'>black lines enclosing them.</p>"
+        );
+    });
+
+    // function to format date
+    function formatDate(data) {
+      var dateTimeParse = d3.timeParse("%b %Y");
+      var yearLabels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+      data.forEach(function (d) {
+        d.date = dateTimeParse(d.month);
+        d.label = yearLabels[d.date.getMonth()];
+      });
+
+      return data;
+    }
+
+    // function to sort data based on date
+    function sortDataASC(data) {
+      data = data.sort(function (a, b) {
+        return d3.ascending(a.date, b.date);
+      });
+
+      return data;
+    }
+
+    // function to return maximum value from death type
+    function getMaximumValue(data) {
+      maximumValue = d3.max(data, function (d) {
+        return d3.max([parseFloat(d.diseases_mortality), parseFloat(d.wounds_mortality), parseFloat(d.others_mortality)]);
+      });
+
+      return maximumValue;
+    }
+
+    // function to calculate maximum radius from maximum value
+    function getMaximumRadius(maximumValue) {
+      return Math.sqrt((maximumValue * 12) / Math.PI);
+    }
+
+    // function to create chart
+    function createChart(radius, data, figureID, chartID) {
+      var coxcomb = Chart.coxcomb();
+
+      figure = d3.select(figureID).append("figure");
+
+      coxcomb.setParameter('domain', [0, radius]);
+      coxcomb.setParameter('angle', function (d) {
+        return d.date.getMonth();
+      });
+      coxcomb.setParameter('area', function (d, i) {
+        return [parseFloat(d.diseases_mortality), parseFloat(d.wounds_mortality), parseFloat(d.others_mortality)];
+      });
+
+      // Bind the data and generate a new chart
+      figure
+        .datum(data)
+        .attr("class", chartID)
+        .call(coxcomb);
+    }
+
+  </script>
+
+</body>
+
+</html>
