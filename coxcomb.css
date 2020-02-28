@@ -5,6 +5,12 @@
 #imageContainer {
     background-color: #FFECB3;
     background-image: url("textured-paper.png");
+    margin-top: 10px;
+}
+
+#legendImage {
+    background-color: #E0E0E0;
+    background-image: url("textured-paper.png");
 }
 
 #diagramContainer h2 hr {
@@ -264,7 +270,7 @@ div.tooltip {
 
 #imageDescriptionLast {
     text-align: center;
-    margin-top: 40px;
+    margin-top: 20px;
     color: red;
 }
 
@@ -279,3 +285,36 @@ div.tooltip {
     from { width: 0 }
     to { width: 100% }
 }
+
+#legendImage h5 {
+    text-align: center;
+    text-decoration: underline;
+}
+
+#dot1 {
+    height: 15px;
+    width: 15px;
+    background-color: #1976D2;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  #dot2 {
+    height: 15px;
+    width: 15px;
+    background-color: #D81B60;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  #dot3 {
+    height: 15px;
+    width: 15px;
+    background-color: #000000;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .fontDot {
+      font-size: 20px;
+  }
